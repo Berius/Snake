@@ -8,14 +8,15 @@ function setup() {
 	createCanvas(400, 400);
 	w = floor(width / rez);
 	h = floor(height/ rez);
-	frameRate	(10);
+	frameRate(10);
 	snake = new Snake();
 	foodLocation();
 }
 function foodLocation(){
 	let x = floor(random(w));
 	let y = floor(random(h));
-	food = createVector(x,y)
+	food = createVector(x,y);
+	
 }
 function keyPressed(){
 	if(keyCode===LEFT_ARROW){
@@ -34,16 +35,19 @@ function draw() {
 	textSize(1);
 	text('Score:',14,2);
 	text(snake.returnLength(),17,2);
+	rect(food.x,food.y,1,1);
 	if(snake.eat(food)){
-			foodLocation();
+		foodLocation();
+		rect(food.x,food.y,1,1);
+
 	}
 	snake.update();
 	snake.show();
 
 	if(snake.endGame()){
-
-	noLoop();
-	noStroke();
-	fill(0,255,0);
-	rect(food.x,food.y,1,1);
+		noLoop();
+		noStroke();
+		fill(0,255,0);
+		
+	}
 }
